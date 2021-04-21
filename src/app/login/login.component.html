@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+<div class="ui message error" *ngIf="message">
+    {{message}}
+</div>
+
+<form class="ui form" *ngIf="!authService.getUser()">
+    <div class="field">
+        <label for="username">Username: </label>
+        <input name="username" type="text" #username>
+    </div>
+
+    <div class="field">
+        <label for="password">Password: </label>
+        <input name="password" type="password" #password>
+    </div>
+
+    <a class="ui button" (click)="login(username.value, password.value)">Login</a>
+</form>
+
+<div class="ui card" *ngIf="authService.getUser()">
+    <div class="content">
+        Logged in as <b> {{ authService.getUser() }} </b>
+    </div>
+    <a class="ui button" (click)="logout()">Log out</a>
+</div>
