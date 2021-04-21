@@ -9,6 +9,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { LoggedInGuardService } from './services/logged-in-guard.service';
+import { Protected2Component } from './protected2/protected2.component';
+import { RouterGuardService } from './services/router-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,6 +23,11 @@ const routes: Routes = [
     component: ProtectedComponent,
     canActivate: [LoggedInGuardService],
   },
+  {
+    path: 'protected2',
+    component: Protected2Component,
+    canActivate: [RouterGuardService],
+  },
 ];
 
 @NgModule({
@@ -30,6 +37,7 @@ const routes: Routes = [
     AboutComponent,
     LoginComponent,
     ProtectedComponent,
+    Protected2Component,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [],
