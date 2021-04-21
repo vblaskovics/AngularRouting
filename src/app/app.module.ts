@@ -12,6 +12,9 @@ import { LoggedInGuardService } from './services/logged-in-guard.service';
 import { Protected2Component } from './protected2/protected2.component';
 import { RouterGuardService } from './services/router-guard.service';
 
+import { routes as productsRoutes, ProductsModule } from './products/products.module';
+import { ProductsComponent } from './products/products.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -28,6 +31,12 @@ const routes: Routes = [
     component: Protected2Component,
     canActivate: [RouterGuardService],
   },
+
+  {
+    path: 'products',
+    component: ProductsComponent,
+    children: productsRoutes
+  }
 ];
 
 @NgModule({
@@ -39,7 +48,7 @@ const routes: Routes = [
     ProtectedComponent,
     Protected2Component,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), ProductsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
